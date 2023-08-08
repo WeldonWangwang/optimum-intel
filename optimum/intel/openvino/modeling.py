@@ -192,7 +192,7 @@ class OVModelForSequenceClassification(OVModel):
             inputs["token_type_ids"] = token_type_ids
 
         # Run inference
-        outputs = self.request(inputs)
+        outputs = self.request(inputs, share_inputs=True, share_outputs=True)
         logits = torch.from_numpy(outputs["logits"]).to(self.device) if not np_inputs else outputs["logits"]
         return SequenceClassifierOutput(logits=logits)
 
@@ -258,7 +258,7 @@ class OVModelForQuestionAnswering(OVModel):
             inputs["token_type_ids"] = token_type_ids
 
         # Run inference
-        outputs = self.request(inputs)
+        outputs = self.request(inputs, share_inputs=True, share_outputs=True)
         start_logits = (
             torch.from_numpy(outputs["start_logits"]).to(self.device) if not np_inputs else outputs["start_logits"]
         )
@@ -328,7 +328,7 @@ class OVModelForTokenClassification(OVModel):
             inputs["token_type_ids"] = token_type_ids
 
         # Run inference
-        outputs = self.request(inputs)
+        outputs = self.request(inputs, share_inputs=True, share_outputs=True)
         logits = torch.from_numpy(outputs["logits"]).to(self.device) if not np_inputs else outputs["logits"]
         return TokenClassifierOutput(logits=logits)
 
@@ -393,7 +393,7 @@ class OVModelForFeatureExtraction(OVModel):
             inputs["token_type_ids"] = token_type_ids
 
         # Run inference
-        outputs = self.request(inputs)
+        outputs = self.request(inputs, share_inputs=True, share_outputs=True)
         last_hidden_state = (
             torch.from_numpy(outputs["last_hidden_state"]).to(self.device)
             if not np_inputs
@@ -463,7 +463,7 @@ class OVModelForMaskedLM(OVModel):
             inputs["token_type_ids"] = token_type_ids
 
         # Run inference
-        outputs = self.request(inputs)
+        outputs = self.request(inputs, share_inputs=True, share_outputs=True)
         logits = torch.from_numpy(outputs["logits"]).to(self.device) if not np_inputs else outputs["logits"]
         return MaskedLMOutput(logits=logits)
 
@@ -521,7 +521,7 @@ class OVModelForImageClassification(OVModel):
         }
 
         # Run inference
-        outputs = self.request(inputs)
+        outputs = self.request(inputs, share_inputs=True, share_outputs=True)
         logits = torch.from_numpy(outputs["logits"]).to(self.device) if not np_inputs else outputs["logits"]
         return ImageClassifierOutput(logits=logits)
 
@@ -586,7 +586,7 @@ class OVModelForAudioClassification(OVModel):
             inputs["attention_mask"] = attention_mask
 
         # Run inference
-        outputs = self.request(inputs)
+        outputs = self.request(inputs, share_inputs=True, share_outputs=True)
         logits = torch.from_numpy(outputs["logits"]).to(self.device) if not np_inputs else outputs["logits"]
         return SequenceClassifierOutput(logits=logits)
 
@@ -658,7 +658,7 @@ class OVModelForCTC(OVModel):
             inputs["attention_mask"] = attention_mask
 
         # Run inference
-        outputs = self.request(inputs)
+        outputs = self.request(inputs, share_inputs=True, share_outputs=True)
         logits = torch.from_numpy(outputs["logits"]).to(self.device) if not np_inputs else outputs["logits"]
         return CausalLMOutput(logits=logits)
 
@@ -739,7 +739,7 @@ class OVModelForAudioXVector(OVModel):
             inputs["attention_mask"] = attention_mask
 
         # Run inference
-        outputs = self.request(inputs)
+        outputs = self.request(inputs, share_inputs=True, share_outputs=True)
         logits = torch.from_numpy(outputs["logits"]).to(self.device) if not np_inputs else outputs["logits"]
         embeddings = (
             torch.from_numpy(outputs["embeddings"]).to(self.device) if not np_inputs else outputs["embeddings"]
@@ -816,7 +816,7 @@ class OVModelForAudioFrameClassification(OVModel):
             inputs["attention_mask"] = attention_mask
 
         # Run inference
-        outputs = self.request(inputs)
+        outputs = self.request(inputs, share_inputs=True, share_outputs=True)
         logits = torch.from_numpy(outputs["logits"]).to(self.device) if not np_inputs else outputs["logits"]
 
         return TokenClassifierOutput(logits=logits)
