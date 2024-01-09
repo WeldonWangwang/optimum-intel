@@ -167,6 +167,8 @@ class OVBaseDecoderModel(OVModel):
             raise_error(self.use_cache, use_cache, "use_cache")
 
     def update_pkv_precision(self, force_fp32=False):
+        logger.info(f"self._pkv_precision {self._pkv_precision} ...")
+        print(f"self._pkv_precision {self._pkv_precision} ...")
         if not self.use_cache or self.stateful:
             return
 
