@@ -184,6 +184,7 @@ class OVBaseDecoderModel(OVModel):
                 inference_precision_hint = self.ov_config.get("INFERENCE_PRECISION_HINT", "")
                 if inference_precision_hint in STR_TO_OV_TYPE:
                     logger.info(f"#l186 self._pkv_precision {self._pkv_precision} ...")
+                    print(f"#l186 self._pkv_precision {self._pkv_precision} ...")
                     pkv_precision = STR_TO_OV_TYPE[inference_precision_hint]
 
             ppp = PrePostProcessor(self.model)
@@ -204,6 +205,7 @@ class OVBaseDecoderModel(OVModel):
                     self.model = self._reshape(self.model, -1, -1)
                 self.request = None
         logger.info(f"self._pkv_precision {self._pkv_precision} ...")
+        print(f"self._pkv_precision {self._pkv_precision} ...")
 
     def _save_pretrained(self, save_directory: Union[str, Path]):
         """
